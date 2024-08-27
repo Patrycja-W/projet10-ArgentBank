@@ -1,59 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const ls = localStorage.getItem("user");
-const userLS = ls ? JSON.parse(ls) : null;
-
-const initialState = userLS
-  ? {
-      isLoggedIn: true,
-      token: userLS.token,
-      userInfo: userLS.userInfo,
-    }
-  : {
-      isLoggedIn: false,
-      token: null,
-      userInfo: null,
-    };
+const initialState = {
+  isLoggedIn: false,
+  token: null,
+  error: null,
+  status: null,
+};
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    logIn: (state, action) => {
-      const userStr = JSON.stringify({ ...action.payload });
-      sessionStorage.setItem("user", userStr);
-      if (action.payload.rememberMe) {
-        localStorage.setItem("user", userStr);
-      } else {
-        localStorage.removeItem("user");
-      }
+    loginSuccess: (state, action) => {
       state.isLoggedIn = true;
       state.token = action.payload.token;
-      state.userInfo = null;
+      state.status = "SUCCESS";
+      state.error = null;
     },
-    setProfile: (state, action) => {
-      state.token = action.payload.token;
-      state.userInfo = action.payload.userInfo;
-      const ls = sessionStorage.getItem("user");
-      const userLS = JSON.parse(ls);
-      const userStr = JSON.stringify({
-        ...userLS,
-        token: action.payload.token,
-        userInfo: action.payload.userInfo,
-      });
-      sessionStorage.setItem("user", userStr);
-      if (ls) localStorage.setItem("user", userStr);
-    },
-    logOut: (state) => {
+    loginError: (state, action) => {
       state.isLoggedIn = false;
       state.token = null;
-      state.userInfo = null;
-      sessionStorage.removeItem("user");
-      localStorage.removeItem("user");
+      state.status = "ERROR";
+      state.error = action.payload.error;
+    },
+    logout: (state, action) => {
+      state.isLoggedIn = false;
+      state.token = null;
+      state.status = "LOGOUT";
+      state.error = null;
     },
   },
 });
-console.log(userSlice);
 
-export const { logIn, setProfile, logOut } = userSlice.actions;
+export const { loginSuccess, loginError, logout } = userSlice.actions;
 export default userSlice.reducer;

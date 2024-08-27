@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logIn } from "../redux/user/userSlice";
+import { loginSuccess, loginError } from "../redux/user/userSlice";
 import Button from "../composants/Button";
 
 const SignIn = () => {
@@ -9,12 +9,7 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState("");
-
-  const handleClick = () => {
-    console.log("Sign In");
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,13 +32,13 @@ const SignIn = () => {
         );
       } else {
         const data = await response.json();
-        console.log("login response data:", data);
         const token = data.body.token;
-        dispatch(logIn({ rememberMe, token }));
+        dispatch(loginSuccess({ token }));
         navigate("/user");
       }
     } catch (error) {
       console.error("Error:", error);
+      dispatch(loginError({ error }));
     }
   };
 
@@ -82,7 +77,7 @@ const SignIn = () => {
             />
             <label htmlFor="remember-me">Remember me</label>
           </div>
-          <Button onClick={handleClick} className="sign-in" type="submit">
+          <Button className="sign-in" type="submit">
             Sign In
           </Button>
           {error && <p className="error-message">{error}</p>}
