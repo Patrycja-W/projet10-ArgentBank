@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { loginSuccess, loginError } from "../redux/user/userSlice";
+import { loginSuccess, loginError } from "../redux/user/authSlice";
 import Button from "../composants/Button";
 
 const SignIn = () => {
@@ -10,6 +10,7 @@ const SignIn = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
