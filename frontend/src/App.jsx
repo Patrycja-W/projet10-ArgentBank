@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Index from "./pages/Index";
 import SignIn from "./pages/SignIn";
-import User from "./pages/User";
+import ProfileUser from "./pages/Profile";
 import Footer from "./composants/Footer";
 import Header from "./composants/Header";
 
@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/signin" element={<SignIn />} />
-        <Route path="/user" element={<User />} />
+        <Route path="/user" element={<ProfileUser />} />
       </Routes>
       <Footer />
     </>
