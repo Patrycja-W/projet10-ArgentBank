@@ -19,6 +19,7 @@ body {
 
 .bg-dark {
   background-color: #12002b;
+  padding-top: 15px;
 }
 
 .sr-only {
@@ -54,6 +55,11 @@ body {
 .main-nav-item {
   text-decoration: none;
   margin-right: 0.5rem;
+  background-color: white;
+  border: 0;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .main-nav-item:hover {
@@ -163,6 +169,7 @@ body {
   border-color: #00bc77;
   background-color: #00bc77;
   color: #fff;
+  border: 0;
 }
 
 .sign-in-content {
@@ -288,4 +295,8 @@ body {
   .transaction-button {
     width: 200px;
   }
+}
+
+.user-name {
+  margin-right: 40px;
 }
