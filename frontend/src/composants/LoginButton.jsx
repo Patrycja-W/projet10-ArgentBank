@@ -15,7 +15,7 @@ const LoginButton = () => {
 
   return (
     <div>
-      {isLoggedIn && <span className="user-name">{userName}</span>}{" "}
+      {isLoggedIn && <span className="user-name">{userName}</span>}
       <i className="fa fa-user-circle"></i>
       <button className="main-nav-item" onClick={handleLogout}>
         {isLoggedIn ? "Logout" : "Sign In"}

@@ -9,8 +9,8 @@ const User = () => {
   const token = useSelector((state) => state.auth.token);
   const firstName = useSelector((state) => state.user.firstName);
   const lastName = useSelector((state) => state.user.lastName);
+  const userName = useSelector((state) => state.user.userName);
   const [isEditing, setIsEditing] = useState(false);
-  const [userName, setUserName] = useState("");
 
   const fetchProfile = async () => {
     try {
@@ -37,7 +37,6 @@ const User = () => {
             userName: data.body.userName,
           })
         );
-        setUserName(data.body.userName);
       }
     } catch (error) {
       console.error("Error:", error);
@@ -51,9 +50,35 @@ const User = () => {
     }
   }, [token]);
 
-  const handleSave = (newUserName) => {
-    console.log("Username saved:", newUserName);
-    setUserName(newUserName);
+  const handleSave = async (newUserName) => {
+    try {
+      const response = await fetch(
+        "http://localhost:3001/api/v1/user/profile",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ userName: newUserName }),
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+      if (!response.ok) {
+        console.error(data.message);
+      } else {
+        dispatch(
+          updateUser({
+            userName: data.body.userName,
+            firstName,
+            lastName,
+          })
+        );
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
     setIsEditing(false);
   };
 
@@ -65,6 +90,7 @@ const User = () => {
     <>
       {isEditing ? (
         <EditUser
+          token={token}
           firstName={firstName}
           lastName={lastName}
           userName={userName}

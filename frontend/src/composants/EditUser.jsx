@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const EditUser = ({ firstName, lastName, userName, onSave, onCancel }) => {
+const EditUser = ({ firstName, lastName, userName, onCancel, onSave }) => {
   const [newUserName, setNewUserName] = useState(userName);
 
   const handleSave = () => {
@@ -8,7 +8,7 @@ const EditUser = ({ firstName, lastName, userName, onSave, onCancel }) => {
   };
 
   return (
-    <div className="edit-form">
+    <div>
       <form>
         <div>
           <label>Username:</label>

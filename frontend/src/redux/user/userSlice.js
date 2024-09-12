@@ -13,7 +13,7 @@ const userSlice = createSlice({
     updateUser: (state, action) => {
       state.firstName = action.payload.firstName;
       state.lastName = action.payload.lastName;
-      state.userName = action.payload.lastName;
+      state.userName = action.payload.userName;
     },
   },
 });
