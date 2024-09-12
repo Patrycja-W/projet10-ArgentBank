@@ -1,16 +1,8 @@
 import PropTypes from "prop-types";
 
-const Button = ({ variant = "primary", children, ...props }) => {
+const Button = ({ type = "button", className = "", onClick, children }) => {
   return (
-    <button
-      {...props}
-      className={[
-        "button",
-        `${variant}-button`,
-        props.className ? props.className + "-button" : "",
-      ].join(" ")}
-      type={props.type ?? "button"}
-    >
+    <button type={type} className={`button ${className}`} onClick={onClick}>
       {children}
     </button>
   );
@@ -18,9 +10,9 @@ const Button = ({ variant = "primary", children, ...props }) => {
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  variant: PropTypes.string,
+  type: PropTypes.oneOf(["button", "submit", "reset"]),
   className: PropTypes.string,
-  type: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default Button;

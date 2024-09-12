@@ -159,7 +159,7 @@ body {
   margin-bottom: 0.5rem;
 }
 
-.sign-in-button {
+.sign-in {
   display: block;
   width: 100%;
   padding: 8px;
@@ -299,4 +299,27 @@ body {
 
 .user-name {
   margin-right: 40px;
+}
+.buttonSaveCancel {
+  border-color: #00bc77;
+  background-color: #00bc77;
+  color: #fff;
+  font-weight: bold;
+  padding: 8px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 20px;
+  width: 13%;
+}
+
+.form label {
+  color: white;
+  margin-right: 15px;
+}
+.form div {
+  margin-top: 20px;
+}
+
+.form h1 {
+  color: white;
 }

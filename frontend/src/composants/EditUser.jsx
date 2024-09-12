@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "../composants/Button";
 
 const EditUser = ({ firstName, lastName, userName, onCancel, onSave }) => {
   const [newUserName, setNewUserName] = useState(userName);
@@ -9,10 +10,10 @@ const EditUser = ({ firstName, lastName, userName, onCancel, onSave }) => {
 
   return (
     <div>
-      <form>
+      <form className="form">
+        <h1>Edit User Info</h1>
         <div>
           <label>Username:</label>
-
           <input
             type="text"
             value={newUserName}
@@ -21,23 +22,24 @@ const EditUser = ({ firstName, lastName, userName, onCancel, onSave }) => {
         </div>
         <div>
           <label>First Name:</label>
-
           <input type="text" value={firstName} disabled />
         </div>
         <div>
           <label>Last Name:</label>
-
           <input type="text" value={lastName} disabled />
         </div>
 
         <div>
-          <button type="button" onClick={handleSave}>
+          <Button
+            className="buttonSaveCancel"
+            type="button"
+            onClick={handleSave}
+          >
             Save
-          </button>
-
-          <button type="button" onClick={onCancel}>
+          </Button>
+          <Button className="buttonSaveCancel" type="button" onClick={onCancel}>
             Cancel
-          </button>
+          </Button>
         </div>
       </form>
     </div>

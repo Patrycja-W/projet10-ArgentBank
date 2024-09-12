@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { loginError } from "../redux/user/authSlice";
 import { updateUser } from "../redux/user/userSlice";
 import EditUser from "../composants/EditUser";
+import Button from "../composants/Button"; // Import du composant Button
 
 const User = () => {
   const dispatch = useDispatch();
@@ -103,9 +104,9 @@ const User = () => {
             Welcome back <br /> {firstName} {lastName} !
           </h1>
 
-          <button className="edit-button" onClick={() => setIsEditing(true)}>
+          <Button className="edit-button" onClick={() => setIsEditing(true)}>
             Edit Name
-          </button>
+          </Button>
         </div>
       )}
     </>

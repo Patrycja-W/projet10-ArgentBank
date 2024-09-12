@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/user/authSlice";
+import { Link } from "react-router-dom";
 
 const LoginButton = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,9 @@ const LoginButton = () => {
 
   return (
     <div>
-      {isLoggedIn && <span className="user-name">{userName}</span>}
+      <Link to="user">
+        {isLoggedIn && <span className="user-name">{userName}</span>}
+      </Link>
       <i className="fa fa-user-circle"></i>
       <button className="main-nav-item" onClick={handleLogout}>
         {isLoggedIn ? "Logout" : "Sign In"}
