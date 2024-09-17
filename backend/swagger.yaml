@@ -52,13 +52,13 @@ paths:
         "200":
           description: Signup Successfully
           schema:
-            $ref: "#/definitions/ProfileApiResponse"
+            $ref: "#/definitions/ApiResponse"
         "400":
           description: Invalid Fields
         "500":
           description: Internal Server Error
   /user/profile:
-    get:
+    post:
       security:
         - Bearer: []
       tags:
@@ -69,9 +69,9 @@ paths:
       # - application/json
       responses:
         "200":
-          description: User profile retrieved successfully
+          description: User profile retrieved successully
           schema:
-            $ref: "#/definitions/ProfileApiResponse"
+            $ref: "#/definitions/ApiResponse"
         "400":
           description: Invalid Fields
         "500":
@@ -96,53 +96,7 @@ paths:
         "200":
           description: User profile retrieved successully
           schema:
-            $ref: "#/definitions/ProfileApiResponse"
-        "400":
-          description: Invalid Fields
-        "500":
-          description: Internal Server Error
-  /transactions:
-    get:
-      security:
-        - Bearer: []
-      tags:
-        - Transactions Module
-      summary: Transactions API
-      description: API for fetching transactions of a user
-      responses:
-        "200":
-          description: Transactions retrieved successfully
-          schema:
-            $ref: "#/definitions/TransactionsApiResponse"
-        "400":
-          description: Invalid Fields
-        "500":
-          description: Internal Server Error
-  /transactions/{id}:
-    put:
-      security:
-        - Bearer: []
-      tags:
-        - Transactions Module
-      summary: Transactions API
-      description: API for updating a transaction
-      parameters:
-        - in: path
-          name: id
-          type: integer
-          required: true
-          description: Numeric ID of the transaction to update
-        - in: body
-          name: body
-          description: Update transaction attributes
-          required: true
-          schema:
-            $ref: "#/definitions/UpdateTransactionAttributes"
-      responses:
-        "200":
-          description: Transactions updated successfully
-          schema:
-            $ref: "#/definitions/TransactionsApiResponse"
+            $ref: "#/definitions/ApiResponse"
         "400":
           description: Invalid Fields
         "500":
@@ -178,7 +132,7 @@ definitions:
       password:
         type: string
         description: user password
-  ProfileApiResponse:
+  ApiResponse:
     type: object
     properties:
       status:
@@ -192,32 +146,6 @@ definitions:
             type: string
           email:
             type: string
-  TransactionsApiResponse:
-    type: object
-    properties:
-      id:
-        type: integer
-      date:
-        type: string
-      description:
-        type: string
-      amount:
-        type: number
-      balance:
-        type: number
-      transactionType:
-        type: string
-      category:
-        type: string
-      note:
-        type: string
-  UpdateTransactionAttributes:
-    type: object
-    properties:
-      category:
-        type: string
-      note:
-        type: string
   LoginResponse:
     type: object
     properties:
