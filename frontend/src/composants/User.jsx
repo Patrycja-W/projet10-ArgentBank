@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { loginError } from "../redux/user/authSlice";
 import { updateUser } from "../redux/user/userSlice";
 import EditUser from "../composants/EditUser";
-import Button from "../composants/Button"; // Import du composant Button
+import Button from "../composants/Button";
 
 const User = () => {
   const dispatch = useDispatch();
