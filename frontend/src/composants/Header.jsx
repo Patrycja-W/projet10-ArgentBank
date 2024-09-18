@@ -16,9 +16,7 @@ function Header() {
         </div>
       </Link>
 
-      <Link to="SignIn">
-        <LoginButton />
-      </Link>
+      <LoginButton />
     </nav>
   );
 }
