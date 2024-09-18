@@ -18,13 +18,13 @@ const LoginButton = () => {
 
   const handleSignIn = () => {
     if (!isLoggedIn) {
-      navigate("/signin");
+      navigate("/login");
     }
   };
 
   const handleUserClick = () => {
     if (isLoggedIn) {
-      navigate("/user");
+      navigate("/profile");
     }
   };
 

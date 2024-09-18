@@ -4,13 +4,12 @@ import { useDispatch } from "react-redux";
 import { loginSuccess, loginError } from "../redux/user/authSlice";
 import Button from "../composants/Button";
 
-const SignIn = () => {
+const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,7 +34,7 @@ const SignIn = () => {
         const data = await response.json();
         const token = data.body.token;
         dispatch(loginSuccess({ token }));
-        navigate("/user");
+        navigate("/profile");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -71,12 +70,7 @@ const SignIn = () => {
               />
             </div>
             <div className="input-remember">
-              <input
-                type="checkbox"
-                id="remember-me"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-              />
+              <input type="checkbox" id="remember-me" />
               <label htmlFor="remember-me">Remember me</label>
             </div>
             <Button className="sign-in" type="submit">
@@ -90,4 +84,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Login;
