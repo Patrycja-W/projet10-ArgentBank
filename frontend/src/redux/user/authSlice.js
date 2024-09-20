@@ -23,7 +23,7 @@ const authSlice = createSlice({
       state.status = "ERROR";
       state.error = action.payload.error;
     },
-    logout: (state, action) => {
+    logout: (state) => {
       state.isLoggedIn = false;
       state.token = null;
       state.status = "LOGOUT";
