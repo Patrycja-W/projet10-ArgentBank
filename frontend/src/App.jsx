@@ -5,19 +5,25 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Footer from "./composants/Footer";
 import Header from "./composants/Header";
+import { ProtectedRoute } from "./composants/ProtectedRoute";
 
-function App() {
+const App = () => {
   return (
     <>
       <Header />
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
+
+        {/* Protégez la route du profil avec le composant ProtectedRoute */}
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/profile" element={<Profile />} />
+        </Route>
       </Routes>
       <Footer />
     </>
   );
-}
+};
 
 export default App;

@@ -1,8 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// Récupérer le token du localStorage, s'il existe
+const token = localStorage.getItem("token");
+
 const initialState = {
-  isLoggedIn: false,
-  token: null,
+  isLoggedIn: !!token, // Si un token existe, isLoggedIn sera true
+  token: token || null, // Stocker le token ou null s'il n'existe pas
   error: null,
   status: null,
 };
@@ -16,6 +19,8 @@ const authSlice = createSlice({
       state.token = action.payload.token;
       state.status = "SUCCESS";
       state.error = null;
+      // Enregistrer le token dans le localStorage
+      localStorage.setItem("token", action.payload.token);
     },
     loginError: (state, action) => {
       state.isLoggedIn = false;
@@ -28,6 +33,8 @@ const authSlice = createSlice({
       state.token = null;
       state.status = "LOGOUT";
       state.error = null;
+      // Retirer le token du localStorage lors de la déconnexion
+      localStorage.removeItem("token");
     },
   },
 });

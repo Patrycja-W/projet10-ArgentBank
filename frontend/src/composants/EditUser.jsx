@@ -1,7 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import PropTypes from "prop-types"; // Add this line to import PropTypes
 import Button from "../composants/Button";
 
 const EditUser = ({ firstName, lastName, userName, onCancel, onSave }) => {
+  //  Prop type for validation
+  EditUser.propTypes = {
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    userName: PropTypes.string.isRequired,
+    onCancel: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
+  };
+
   const [newUserName, setNewUserName] = useState(userName);
 
   const handleSave = () => {
